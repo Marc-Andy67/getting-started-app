@@ -1,3 +1,4 @@
+#test
 const db = require('../../src/persistence/sqlite');
 const fs = require('fs');
 const location = process.env.SQLITE_DB_LOCATION || '/etc/todos/todo.db';
@@ -12,6 +13,10 @@ beforeEach(() => {
     if (fs.existsSync(location)) {
         fs.unlinkSync(location);
     }
+});
+
+afterEach(() => {
+    db.teardown();
 });
 
 test('it initializes correctly', async () => {
